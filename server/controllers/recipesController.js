@@ -29,16 +29,23 @@ const createRecipe = async (req, res) => {
     }
     const recipe = await Recipes.create({
       name: req.body.name,
-      type: req.body.type,
-      difficulty: req.body.difficulty,
-      ingredients: req.body.ingredients,
-      time: req.body.time,
+      // type: req.body.type,
+      // difficulty: req.body.difficulty,
+      // ingredients: req.body.ingredients,
+      // time: req.body.time,
       description: req.body.description,
-      photoUrl: req.body.photoUrl,
+      // photoUrl: req.body.photoUrl,
       author: userId,
     });
 
-    if (recipe) return res.status(201).json({ success: true, recipe });
+    if (recipe)
+      return res
+        .status(201)
+        .json({
+          success: true,
+          message: 'Przepis został zapisany!',
+          data: recipe,
+        });
   } catch (error) {
     console.log(error);
   }

@@ -1,0 +1,22 @@
+@import '../../../design-tokens/variables.scss';
+
+.button {
+  min-width: 130px;
+  height: 50px;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: $Light;
+  display: block;
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 0 10px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.action {
+  background-color: $action;
+  color: $white;
+}

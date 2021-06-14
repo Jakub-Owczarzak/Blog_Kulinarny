@@ -1,0 +1,11 @@
+@import '../../../design-tokens/variables.scss';
+
+.screenWrapper {
+  width: 100vw;
+  height: calc(100vh - 55px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $mainbg;
+  z-index: -100;
+}

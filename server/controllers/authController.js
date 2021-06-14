@@ -1,6 +1,7 @@
 const Users = require('../models/user');
 
 const signup = async (req, res) => {
+  console.log(req.body);
   try {
     const isEmailExists = await Users.findOne({ email: req.body.email });
     if (isEmailExists)
@@ -13,10 +14,13 @@ const signup = async (req, res) => {
     const user = await Users.create({
       name: req.body.name,
       email: req.body.email,
+      password: req.body.password,
     });
 
     if (user) {
-      return res.status(201).json({ success: true, user: user._id });
+      return res
+        .status(201)
+        .json({ success: true, user: user._id, role: user.role });
     }
   } catch (error) {
     console.log(error);
