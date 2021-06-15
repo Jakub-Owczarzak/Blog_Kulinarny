@@ -1,0 +1,35 @@
+.container {
+  margin-top: 15px;
+
+  .header {
+    color: rgb(54, 54, 54);
+    position: relative;
+    height: 35px;
+    width: 200px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: none;
+    border-bottom: 2px solid silver;
+    cursor: pointer;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      background-image: url('../../../assets/icons/downArrow.svg');
+      width: 15px;
+      height: 15px;
+      right: 15px;
+      top: 10px;
+    }
+  }
+  .dropdownList {
+    height: 150px;
+    position: absolute;
+    overflow: scroll;
+    z-index: 10000;
+  }
+}

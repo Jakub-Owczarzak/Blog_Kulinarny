@@ -1,0 +1,17 @@
+@import '../../design-tokens/variables.scss';
+.screenWrapper {
+  width: 100vw;
+  min-height: calc(100vh - 55px);
+  background-color: $mainbg;
+  .mainWrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding-top: 20px;
+    .recipeWrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+}

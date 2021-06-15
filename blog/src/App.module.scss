@@ -1,0 +1,37 @@
+.navWrapper {
+    width: 100vw;
+    height: 40px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position:fixed;
+    .divTitle {
+        text-align: center;
+        font-size: 24px;
+        color: purple;
+    }
+    ul {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        list-style-type: none;
+       
+    }
+    li {
+        text-align: center;
+        width: 33%;
+    }
+
+}
+@media(max-width:1024px) {
+    .navWrapper {
+        .divTitle{
+            font-size: 18px;
+
+        }
+    }
+}
+
