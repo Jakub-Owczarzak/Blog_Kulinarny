@@ -17,7 +17,7 @@ export const fetchAllRecipes = (data) => {
 export const fetchAllRecipesAsync = () => {
   return async (dispatch, getState) => {
     try {
-      const response = await fetch('http://localhost:8080/recipe');
+      const response = await fetch('https://shopkubson.herokuapp.com/recipe');
       const data = await response.json();
       console.log(data)
       dispatch(fetchAllRecipes(data.data));
