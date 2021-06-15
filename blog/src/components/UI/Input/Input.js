@@ -29,7 +29,7 @@ const Input = ({
         <div className={styles.inputWrapper}>
           <textarea
             className={styles.textarea}
-            style={{ height: `${textareaHeight + 5}px` }}
+            style={{ height: `${textareaHeight}px` }}
             type={type}
             value={value}
             placeholder={placeholder}

@@ -1,24 +1,24 @@
 import React from 'react';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './recipebox.module.scss';
 import Button from '../UI/Button';
-import {removeRecipe} from '../../actions/recipeActions'
+import { removeRecipe } from '../../actions/recipeActions';
 const RecipeBox = ({ recipe }) => {
-  console.log(recipe)
+  console.log(recipe);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  
-  console.log(recipe._id)
 
-  
-  const removeRecipe = async() => {
+  console.log(recipe._id);
+  console.log(user);
+
+  const removeRecipe = async () => {
     const removeData = {
       recipeId: recipe._id,
-      userId: user.id
-    }
-    try{
-      const response = await fetch(`http://localhost:8080/recipe/remove`,{
+      userId: user.id,
+    };
+    try {
+      const response = await fetch(`http://localhost:8080/recipe/remove`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -26,31 +26,35 @@ const RecipeBox = ({ recipe }) => {
         body: JSON.stringify(removeData),
       });
       const data = await response.json();
-      if(data.success){
-        dispatch(removeRecipe(recipe._id))
+      if (data.success) {
+        dispatch(removeRecipe(recipe._id));
       }
-    } catch(err){
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
-   
-  }
+  };
 
   return (
     <>
       {recipe && (
         <div className={styles.mainWrapper}>
           <div className={styles.nameImageWrapper}>
-              <p className={styles.name}>{recipe.name}</p>
-              <p className={styles.author}> Autor {recipe.author.name}</p>
-              <div className = {styles.ownerWrapper}>  
-                <p className = {styles.owner}>Typ dania {recipe.type}</p>
-              <p className = {styles.owner}>Poziom trudności {recipe.difficulty}</p>
-              <p className = {styles.owner}> Czas przygotowoania {recipe.time} min</p>
-              </div>
+            <p className={styles.name}>{recipe.name}</p>
+            <p className={styles.author}> Autor {recipe.author.name}</p>
+            <div className={styles.ownerWrapper}>
+              <p className={styles.owner}>Typ dania {recipe.type}</p>
+              <p className={styles.owner}>
+                Poziom trudności {recipe.difficulty}
+              </p>
+              <p className={styles.owner}>
+                {' '}
+                Czas przygotowoania {recipe.time} min
+              </p>
+            </div>
           </div>
 
           <div className={styles.infoWrapper}>
-          <div className={styles.desc}>
+            <div className={styles.desc}>
               <p>Składniki</p>
               <p>{recipe.ingredients}</p>
             </div>
@@ -59,11 +63,17 @@ const RecipeBox = ({ recipe }) => {
               <p>{recipe.description}</p>
             </div>
             <div className={styles.image}>
-            {recipe.photoUrl&& <img className={styles.image}   src={recipe.photoUrl} alt="userAvatar" />}
+              {recipe.photoUrl && (
+                <img
+                  className={styles.image}
+                  src={recipe.photoUrl}
+                  alt="userAvatar"
+                />
+              )}
             </div>
-          <Button title ={'Usuń przepis'}
-          action
-          click={removeRecipe}/>
+            {user && user.role === 'admin' && (
+              <Button title={'Usuń przepis'} action click={removeRecipe} />
+            )}
           </div>
           {/* <div className={styles.link}>
             <LinkItem
