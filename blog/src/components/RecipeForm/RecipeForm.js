@@ -9,6 +9,8 @@ import styles from './loginform.module.scss';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
 import LinkItem from '../UI/LinkItem';
+import CustomSelect from '../UI/CustomSelect/CustomSelect';
+
 
 const RecipeForm = () => {
   const user = useSelector((state) => state.user);
@@ -18,7 +20,17 @@ const RecipeForm = () => {
   const [formInputsValues, setInputsFormValues] = useState({
     name: '',
     description: '',
+    photo:'',
+    ingredients:'',
+    time:0
+
   });
+  const [savedRecipeTypes, setsavedRecipeTypes] = useState('');
+
+  const recipetypes = ['przystawka','zupa','danie','deser'];
+  const [savedRecipeHarndess, setsavedRecipeHarndess] = useState('');
+
+  const recipehardness = ['łatwy','średni','trudny','mistrzowski'];
 
   const [errors, setErrors] = useState({});
 
@@ -33,20 +45,32 @@ const RecipeForm = () => {
     if (formInputsValues.name.length < 6) {
       errorsObj.name = 'Nazwa przepisu jest za krótka';
     }
+    if (formInputsValues.time < 0 && formInputsValues.time>= 300) {
+      errorsObj.name = 'Podany czas musi być mniejszy od 300 minut';
+    }
 
-    if (formInputsValues.description.length < 6) {
-      errorsObj.description = 'Hasło jest za krótkie.';
+    if (formInputsValues.description.length > 200) {
+      errorsObj.description = 'Max 200 znaków.';
+    }
+    if (formInputsValues.ingredients.length > 150) {
+      errorsObj.description = 'Max 200 znaków.';
     }
 
     if (Object.keys(errorsObj).length > 0) {
       setErrors(errorsObj);
       return;
     }
+            {/* // body ma byc: userId , name, type, difficulty, ingredients, time, description, photoUrl */}
 
     const userData = {
       name: formInputsValues.name,
       description: formInputsValues.description,
       userId: user.id,
+      type:savedRecipeTypes,
+      difficulty:savedRecipeHarndess,
+      photoUrl:formInputsValues.photo,
+      time:formInputsValues.time,
+      ingredients:formInputsValues.ingredients
     };
 
     try {
@@ -59,6 +83,7 @@ const RecipeForm = () => {
       });
 
       const data = await response.json();
+      console.log(data)
 
       if (!data.success) {
         dispatch(openNotificationModal(data.message, true));
@@ -95,14 +120,55 @@ const RecipeForm = () => {
               onChange={handleChangeInputValue}
               errorType={errors.name}
             />
-            <Input
+             <Input
+              type={'number'}
+              label={'Czas przygotowania'}
+              name={'time'}
+              value={formInputsValues.time}
+              onChange={handleChangeInputValue}
+              errorType={errors.time}
+            />
+          
+            <CustomSelect
+              header={'Typ potrawy'}
+              data={recipetypes}
+              selectedValue={savedRecipeTypes}
+              changeValueFn={setsavedRecipeTypes}
+              placeholder="Wybierz typ potrawy"
+            />
+            
+            <CustomSelect
+              header={'Poziom trudności'}
+              data={recipehardness}
+              selectedValue={savedRecipeHarndess}
+              changeValueFn={setsavedRecipeHarndess}
+              placeholder="Poziom trudności "
+            />
+             <Input
               type={'textarea'}
-              label={'Opis projektu'}
+              label={'Składniki'}
+              name={'ingredients'}
+              onChange={handleChangeInputValue}
+              value={formInputsValues.ingredients}
+              errorType={errors.ingredients}
+              textareaHeight={textareaHeight}
+            />
+              <Input
+              type={'textarea'}
+              label={'Opis przepisu'}
               name={'description'}
               onChange={handleChangeInputValue}
               value={formInputsValues.description}
               errorType={errors.description}
               textareaHeight={textareaHeight}
+            />
+            <Input
+              type={'text'}
+              label={'Podaj link do zdjęcia:'}
+              name={'photo'}
+              value={formInputsValues.photo}
+              onChange={handleChangeInputValue}
+              errorType={errors.photo}
             />
             <div className={styles.buttonContainer}>
               <Button title={'Dodaj przepis'} action />

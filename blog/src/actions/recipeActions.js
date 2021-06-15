@@ -1,27 +1,34 @@
 import * as actionTypes from './actionTypes';
 
-export const fetchAllProjects = (data) => {
+export const removeRecipe= (id) => {
   return {
-    type: actionTypes.FETCHED_ALL_PROJECTS_TO_STATE,
+    type: actionTypes.REMOVE_RECIPE_TO_STATE,
+    payload: id,
+  };
+};
+
+export const fetchAllRecipes = (data) => {
+  return {
+    type: actionTypes.FETCHED_ALL_RECIPE_TO_STATE,
     payload: data,
   };
 };
 
-export const fetchAllProjectsAsync = () => {
+export const fetchAllRecipesAsync = () => {
   return async (dispatch, getState) => {
     try {
-      const response = await fetch('/projects/all');
+      const response = await fetch('http://localhost:8080/recipe');
       const data = await response.json();
       console.log(data)
-      dispatch(fetchAllProjects(data.data));
+      dispatch(fetchAllRecipes(data.data));
     } catch (err) {
       console.log(err);
     }
   };
 };
 
-export const fetchSingleProject = (data) => {
-  return { type: actionTypes.FETCHED_SINGLE_PROJECT_TO_STATE, payload: data };
+export const fetchSingleRecipe = (data) => {
+  return { type: actionTypes.FETCHED_SINGLE_RECIPE_TO_STATE, payload: data };
 };
 
 export const fetchSingleProjectAsync = (userId) => {

@@ -2,13 +2,13 @@ import React from "react";
 
 import styles from "./button.module.scss";
 
-const Button = ({ title, onClick, action }) => {
+const Button = ({ title, click, action }) => {
   return (
     <button
       className={
         action ? [styles.button, styles.action].join(" ") : styles.button
       }
-      onClick={onClick}
+      onClick={click}
     >
       {title}
     </button>

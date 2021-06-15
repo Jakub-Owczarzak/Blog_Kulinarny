@@ -40,6 +40,7 @@ function App() {
         <Route path="/" exact component={MainView} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignupScreen} />
+        
         <Route path="/createrecipe" component={RecipeForm} />
       </Switch>
     </>

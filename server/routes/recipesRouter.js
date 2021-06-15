@@ -3,12 +3,12 @@ const router = express.Router();
 
 const recipesController = require('../controllers/recipesController');
 
-router.post('/', recipesController.getRecipes);
+router.get('/', recipesController.getRecipes);
 
 // body ma byc: userId , name, type, difficulty, ingredients, time, description, photoUrl
 router.post('/create', recipesController.createRecipe);
 
-router.get('/remove/:recipeId/:userId', recipesController.deleteRecipe);
+router.post('/remove', recipesController.deleteRecipe);
 
 // body ma byc: userId, recipeId, text
 router.post('/comment/add', recipesController.addComment);

@@ -1,4 +1,6 @@
 const Users = require('../models/user');
+const Recipes = require('../models/recipe');
+
 
 const signup = async (req, res) => {
   console.log(req.body);
@@ -35,6 +37,8 @@ const login = async (req, res) => {
         success: false,
         message: 'Hasło lub email jest nieprawidłowy.',
       });
+      const recipesData = await Recipes.find({author:user._id});
+      console.log(recipesData)
 
     const isPasswordValid = req.body.password === user.password;
 
@@ -48,7 +52,7 @@ const login = async (req, res) => {
       id: user._id,
       email: user.email,
       role: user.role,
-      recipes: user.recipes,
+      recipes: recipesData,
     };
 
     res.json({ success: true, user: userData });
