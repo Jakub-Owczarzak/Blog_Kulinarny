@@ -74,7 +74,7 @@ const RecipeForm = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:8080/recipe/create', {
+      const response = await fetch('https://shopkubson.herokuapp.com/recipe/create', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
