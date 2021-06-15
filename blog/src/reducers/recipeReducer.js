@@ -5,23 +5,24 @@ const initialState = {
   currentViewProject: null,
 };
 
-const projectsReducer = (state = initialState, action) => {
+const recipeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCHED_ALL_PROJECTS_TO_STATE:
+    case actionTypes.FETCHED_ALL_RECIPE_TO_STATE:
       return {
         ...state,
         all: [...action.payload],
       };
-    case actionTypes.FETCHED_SINGLE_PROJECT_TO_STATE:
+    case actionTypes.FETCHED_SINGLE_RECIPE_TO_STATE:
       return {
         ...state,
         currentViewProject: action.payload,
       };
-    case actionTypes.CLEAN_SINGLE_PROJECT:
-      return {
-        ...state,
-        currentViewProject: null,
-      };
+    case actionTypes.REMOVE_RECIPE_TO_STATE:
+       const filtered = state.all.filter((el)=> el!==action.payload);
+        return {
+          ...state,
+          all: filtered,
+        }
     // case actionTypes.FETCHED_USERS_SEARCHBAR:
     //   return {
     //     ...state,
@@ -34,4 +35,4 @@ const projectsReducer = (state = initialState, action) => {
   }
 };
 
-export default projectsReducer;
+export default recipeReducer;

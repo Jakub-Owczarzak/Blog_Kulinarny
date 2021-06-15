@@ -1,7 +1,7 @@
 @import '../../design-tokens/variables.scss';
 
 .mainWrapper {
-  margin: 0 15px;
+  margin: 20px 15px;
   padding: 30px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.16);
   background-color: #ffffff;
@@ -25,5 +25,14 @@
     display: flex;
     justify-content: center;
     margin: 5px 0;
+  }
+}
+
+@media (max-width:1024px) {
+  .mainWrapper {
+    margin-top: 80px;
+    .loginHeader {
+      font-size: 1.5rem;
+    }
   }
 }

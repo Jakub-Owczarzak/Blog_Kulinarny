@@ -4,7 +4,7 @@ const Comments = require('../models/comment');
 
 const getRecipes = async (req, res) => {
   try {
-    const recipesData = await Recipes.find({});
+    const recipesData = await Recipes.find().populate('author');
 
     if (!recipesData.length)
       return res.json({ success: false, message: 'No created recipes' });
@@ -29,12 +29,12 @@ const createRecipe = async (req, res) => {
     }
     const recipe = await Recipes.create({
       name: req.body.name,
-      // type: req.body.type,
-      // difficulty: req.body.difficulty,
-      // ingredients: req.body.ingredients,
-      // time: req.body.time,
+      type: req.body.type,
+      difficulty: req.body.difficulty,
+      ingredients: req.body.ingredients,
+      time: req.body.time,
       description: req.body.description,
-      // photoUrl: req.body.photoUrl,
+      photoUrl: req.body.photoUrl,
       author: userId,
     });
 
@@ -52,10 +52,10 @@ const createRecipe = async (req, res) => {
 };
 
 const deleteRecipe = async (req, res) => {
-  const { recipeId, userId } = req.params;
+  const { recipeId, userId } = req.body;
   try {
     const userObj = await Users.findOne({ _id: userId });
-
+    console.log(userObj)
     if (!userObj) {
       return res.json({
         success: false,
@@ -66,9 +66,10 @@ const deleteRecipe = async (req, res) => {
       return res.json({ success: false, message: 'Nie masz uprawnień' });
     }
     const recipe = await Recipes.findOne({ _id: recipeId });
+    console.log(recipe)
     if (recipe) {
-      const res = await Recipes.remove({ _id: recipeId });
-      if (res.deletedCount > 0) {
+      const response = await Recipes.remove({ _id: recipeId });
+      if (response.deletedCount > 0) {
         return res.json({ success: true, message: 'Usunieto przepis' });
       }
     }

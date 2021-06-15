@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import * as userActions from '../../actions/userActions';
 import { openNotificationModal } from '../../actions/notificationModalActions';
 
-import styles from './loginform.module.scss';
+import styles from './LoginForm.module.scss';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
 import LinkItem from '../UI/LinkItem';
@@ -62,7 +62,7 @@ const LoginForm = () => {
       }
 
       dispatch(userActions.storeUserData(data.user));
-      history.push('/home');
+      history.push('/');
     } catch (error) {
       console.log(error);
     }

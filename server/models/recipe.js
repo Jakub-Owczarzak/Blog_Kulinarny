@@ -5,30 +5,30 @@ const recipeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // type: {
-  //   type: String,
-  //   required: true,
-  // },
-  // difficulty: {
-  //   type: String,
-  //   required: true,
-  // },
-  // ingredients: {
-  //   type: String,
-  //   required: true,
-  // },
-  // time: {
-  //   type: String,
-  //   required: true,
-  // },
+  type: {
+    type: String,
+    required: true,
+  },
+  difficulty: {
+    type: String,
+    required: true,
+  },
+  ingredients: {
+    type: String,
+    required: true,
+  },
+  time: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
   },
-  // photoUrl: {
-  //   type: String,
-  //   default: '',
-  // },
+  photoUrl: {
+    type: String,
+    default: '',
+  },
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users',

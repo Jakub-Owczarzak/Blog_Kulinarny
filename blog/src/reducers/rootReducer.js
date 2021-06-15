@@ -3,11 +3,11 @@ import { combineReducers } from 'redux';
 import userReducer from './userReducer';
 import profileModalViewReducer from './profileModalViewReducer';
 import notificationModalReducer from './notificationModalReducer';
-import projectsReducer from './projectsReducer'
+import recipeReducer from './recipeReducer'
 
 const rootReducer = combineReducers({
   user: userReducer,
-  projects:projectsReducer,
+  recipes:recipeReducer,
   profileModal: profileModalViewReducer,
   notificationModal: notificationModalReducer,
 });

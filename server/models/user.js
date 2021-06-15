@@ -17,10 +17,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: 'user',
   },
-  recipes: {
-    type: Array,
-    default: [],
-  },
+  recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipes' }],
 });
 
 const Users = mongoose.model('Users', userSchema);
