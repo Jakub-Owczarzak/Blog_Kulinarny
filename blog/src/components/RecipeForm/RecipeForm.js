@@ -98,7 +98,6 @@ const RecipeForm = () => {
   };
   const handleChangeInputValue = (e) => {
     settextareaHeight(e.target.scrollHeight);
-    console.log(e.target.value);
     setInputsFormValues((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
