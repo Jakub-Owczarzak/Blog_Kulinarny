@@ -10,7 +10,7 @@ import MenuItem from './components/MenuItem/MenuItem';
 import SignupScreen from './views/SignupScreen';
 import RecipeForm from './views/RecipeFormScreen';
 import NotificationModal from './components/NotificationModal';
-import { storeUserData, removeUserData } from './actions/userActions';
+import {  removeUserData } from './actions/userActions';
 
 function App() {
   const { isOpen, error } = useSelector((state) => state.notificationModal);
