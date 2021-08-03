@@ -7,7 +7,7 @@ mongoose.set('useFindAndModify', false);
 
 const hostDB =
   process.env.mongodb ||
-  'mongodb+srv://cluster:cluster@cluster0.pzifq.mongodb.net/FitAPP?retryWrites=true&w=majority';
+  'mongoDB cluster link';
 
 module.exports = {
   hostDB,
